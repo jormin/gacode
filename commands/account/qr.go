@@ -39,11 +39,11 @@ func init() {
 // QRCode print or export qrcode image
 func QRCode(ctx *cli.Context) error {
 	if ctx.Args().Len() == 0 {
-		return errors.MissingRequiredArgumentErr
+		return errors.ErrMissingRequiredArgument
 	}
 	name := ctx.Args().Get(0)
 	if name == "" {
-		return errors.MissingRequiredArgumentErr
+		return errors.ErrMissingRequiredArgument
 	}
 	var account *entity.Account
 	for _, v := range commands.Data.Accounts {
@@ -52,7 +52,7 @@ func QRCode(ctx *cli.Context) error {
 		}
 	}
 	if account == nil {
-		return errors.AccountNameNotExistsErr
+		return errors.ErrAccountNameNotExists
 	}
 	exportPath := ""
 	flags := ctx.FlagNames()
@@ -61,7 +61,7 @@ func QRCode(ctx *cli.Context) error {
 		case "o":
 			exportPath = ctx.String("o")
 			if exportPath == "" {
-				return errors.InvalidExportPathErr
+				return errors.ErrInvalidExportPath
 			}
 		}
 	}

@@ -48,7 +48,7 @@ func Remove(ctx *cli.Context) error {
 		return nil
 	}
 	if ctx.Args().Len() == 0 {
-		return errors.MissingRequiredArgumentErr
+		return errors.ErrMissingRequiredArgument
 	}
 	for i := 0; i < ctx.Args().Len(); i++ {
 		for index, account := range commands.Data.Accounts {

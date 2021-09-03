@@ -47,7 +47,7 @@ func WriteData(data *entity.Data) error {
 	return err
 }
 
-// Get new data
+// NewData Get new data
 func NewData() *entity.Data {
 	return &entity.Data{
 		Accounts: []*entity.Account{},

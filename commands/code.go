@@ -48,7 +48,7 @@ func Code(ctx *cli.Context) error {
 		accounts = Data.Accounts
 	} else {
 		if ctx.Args().Len() == 0 {
-			return errors.MissingRequiredArgumentErr
+			return errors.ErrMissingRequiredArgument
 		}
 		for i := 0; i < ctx.Args().Len(); i++ {
 			for _, account := range Data.Accounts {

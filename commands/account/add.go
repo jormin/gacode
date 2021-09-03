@@ -28,16 +28,16 @@ func init() {
 // Add an existing account
 func Add(ctx *cli.Context) error {
 	if ctx.Args().Len() == 0 {
-		return errors.MissingRequiredArgumentErr
+		return errors.ErrMissingRequiredArgument
 	}
 	name := ctx.Args().Get(0)
 	secret := ctx.Args().Get(1)
 	if name == "" || secret == "" {
-		return errors.MissingRequiredArgumentErr
+		return errors.ErrMissingRequiredArgument
 	}
 	for _, v := range commands.Data.Accounts {
 		if v.Name == name {
-			return errors.AccountNameExistsErr
+			return errors.ErrAccountNameExists
 		}
 	}
 	qrCode := commands.GA.GetQRCode(name, secret)

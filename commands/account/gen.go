@@ -28,20 +28,20 @@ func init() {
 // Generate Generate a new account
 func Generate(ctx *cli.Context) error {
 	if ctx.Args().Len() == 0 {
-		return errors.MissingRequiredArgumentErr
+		return errors.ErrMissingRequiredArgument
 	}
 	name := ctx.Args().Get(0)
 	if name == "" {
-		return errors.MissingRequiredArgumentErr
+		return errors.ErrMissingRequiredArgument
 	}
 	for _, v := range commands.Data.Accounts {
 		if v.Name == name {
-			return errors.AccountNameExistsErr
+			return errors.ErrAccountNameExists
 		}
 	}
 	secret, err := commands.GA.GenerateSecret()
 	if err != nil {
-		return errors.GenerateSecretErr
+		return errors.ErrGenerateSecret
 	}
 	qrCode := commands.GA.GetQRCode(name, secret)
 	curTime := time.Now().Unix()

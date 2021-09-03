@@ -12,14 +12,14 @@ var Data *entity.Data
 // GA Google Authenticator
 var GA *helper.GoogleAuthenticator
 
-// Before
+// BeforeFunc deal before execute command
 func BeforeFunc(ctx *cli.Context) (err error) {
 	Data, err = helper.ReadData()
 	GA = helper.NewGoogleAuthenticator()
 	return err
 }
 
-// After
+// AfterFunc deal after execute command
 func AfterFunc(ctx *cli.Context) error {
 	return helper.WriteData(Data)
 }
