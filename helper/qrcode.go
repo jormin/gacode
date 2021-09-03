@@ -8,7 +8,7 @@ import (
 )
 
 // PrintQRCodeAllSize the size of QR code to print
-const PrintQRCodeAllSize = 45
+const PrintQRCodeAllSize = 49
 
 // PrintQRCodeAllSize the size of QR code to print
 const PrintQRCodeSize = 35
