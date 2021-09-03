@@ -15,7 +15,7 @@ func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
 			Name:   "ls",
-			Usage:  "列出当前配置的账户信息",
+			Usage:  "List all accounts configured",
 			Action: List,
 			Before: commands.BeforeFunc,
 			After:  commands.AfterFunc,
@@ -23,7 +23,7 @@ func init() {
 	)
 }
 
-// List 列出当前配置的账户信息
+// List List all accounts configured
 func List(ctx *cli.Context) error {
 	accounts := commands.Data.Accounts
 	contentFormat := "%s\t%s\t%s"

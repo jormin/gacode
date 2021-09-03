@@ -13,10 +13,10 @@ import (
 // GetDatafilePath Get path of data file
 func GetDatafilePath() string {
 	home, _ := homedir.Dir()
-	return fmt.Sprintf("%s/gcode", home)
+	return fmt.Sprintf("%s/gacode", home)
 }
 
-// ReadData 读取数据
+// ReadData read data from file
 func ReadData() (*entity.Data, error) {
 	path := GetDatafilePath()
 	_, err := os.Stat(path)
@@ -40,12 +40,12 @@ func ReadData() (*entity.Data, error) {
 		}
 	}
 	if data.Accounts == nil {
-		data.Accounts = []entity.Account{}
+		data.Accounts = []*entity.Account{}
 	}
 	return data, err
 }
 
-// WriteData 写入数据
+// WriteData write data to file
 func WriteData(data *entity.Data) error {
 	path := GetDatafilePath()
 	b, err := json.Marshal(data)
@@ -59,6 +59,6 @@ func WriteData(data *entity.Data) error {
 // Get new data
 func NewData() *entity.Data {
 	return &entity.Data{
-		Accounts: []entity.Account{},
+		Accounts: []*entity.Account{},
 	}
 }

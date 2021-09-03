@@ -2,20 +2,17 @@ package errors
 
 import "errors"
 
-// MissingRequiredArgumentErr 缺少必传参数
-var MissingRequiredArgumentErr = errors.New("缺少必传参数")
+// MissingRequiredArgumentErr missing required argument
+var MissingRequiredArgumentErr = errors.New("missing required argument")
 
-// AccountNameExistsErr 账户名称已存在
-var AccountNameExistsErr = errors.New("账户名称已存在")
+// AccountNameExistsErr account name exists
+var AccountNameExistsErr = errors.New("account name exists")
 
-// AccountNameNotExistsErr 账户名称不存在
-var AccountNameNotExistsErr = errors.New("账户名称不存在")
+// AccountNameNotExistsErr account name not exists
+var AccountNameNotExistsErr = errors.New("account name not exists")
 
-// GenerateSecretErr 生成账户秘钥失败
-var GenerateSecretErr = errors.New("生成账户秘钥失败")
+// GenerateSecretErr generate account secret error
+var GenerateSecretErr = errors.New("generate account secret error")
 
-// FlagContentValidateErr flag content validate error
-var FlagContentValidateErr = errors.New("flag content validate error")
-
-// TodoNotExistsErr todo not exists
-var TodoNotExistsErr = errors.New("todo not exists")
+// InvalidExportPathErr invalid export path
+var InvalidExportPathErr = errors.New("invalid export path")

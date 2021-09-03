@@ -16,16 +16,16 @@ func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
 			Name:      "add",
-			Usage:     "添加账户信息",
+			Usage:     "Add an existing account",
 			Action:    Add,
-			ArgsUsage: "[name: 账户名称] [secret: 秘钥]",
+			ArgsUsage: "[name: account name] [secret: account secret]",
 			Before:    commands.BeforeFunc,
 			After:     commands.AfterFunc,
 		},
 	)
 }
 
-// Add 添加账户信息
+// Add an existing account
 func Add(ctx *cli.Context) error {
 	if ctx.Args().Len() == 0 {
 		return errors.MissingRequiredArgumentErr
@@ -43,7 +43,7 @@ func Add(ctx *cli.Context) error {
 	qrCode := commands.GA.GetQRCode(name, secret)
 	curTime := time.Now().Unix()
 	commands.Data.Accounts = append(
-		commands.Data.Accounts, entity.Account{
+		commands.Data.Accounts, &entity.Account{
 			Name:       name,
 			Secret:     secret,
 			QRCode:     qrCode,
@@ -51,6 +51,6 @@ func Add(ctx *cli.Context) error {
 			UpdateTime: curTime,
 		},
 	)
-	fmt.Println(fmt.Sprintf("添加账户成功，二维码: %s", qrCode))
+	fmt.Printf("add account success.\nname: %s\nsecret: %s\nqrcode: %s\n", name, secret, qrCode)
 	return nil
 }

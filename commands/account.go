@@ -10,7 +10,7 @@ func init() {
 	config.RegisterCommand(
 		"", &cli.Command{
 			Name:   "account",
-			Usage:  "账户信息管理",
+			Usage:  "Manage accounts of Google Authenticator",
 			Before: BeforeFunc,
 			After:  AfterFunc,
 		},

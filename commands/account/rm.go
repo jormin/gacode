@@ -15,13 +15,13 @@ func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
 			Name:      "rm",
-			Usage:     "删除账户信息",
+			Usage:     "Remove specified or all accounts",
 			Action:    Remove,
-			ArgsUsage: "[name-1: 第一个账户名称] [name-2] ... [name-n]",
+			ArgsUsage: "[name-1: first account name] [name-2] ... [name-n]",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{
 					Name:        "a",
-					Usage:       "删除所有的账户信息",
+					Usage:       "Remove all accounts",
 					Required:    false,
 					DefaultText: "false",
 				},
@@ -32,7 +32,7 @@ func init() {
 	)
 }
 
-// Remove 删除账户
+// Remove Remove specified or all accounts
 func Remove(ctx *cli.Context) error {
 	removeAll := false
 	flags := ctx.FlagNames()
@@ -43,18 +43,18 @@ func Remove(ctx *cli.Context) error {
 		}
 	}
 	if removeAll {
-		commands.Data.Accounts = []entity.Account{}
-		fmt.Println("删除所有账户信息成功")
-	} else {
-		if ctx.Args().Len() == 0 {
-			return errors.MissingRequiredArgumentErr
-		}
-		for i := 0; i < ctx.Args().Len(); i++ {
-			for index, account := range commands.Data.Accounts {
-				if account.Name == ctx.Args().Get(i) {
-					commands.Data.Accounts = append(commands.Data.Accounts[:index], commands.Data.Accounts[index+1:]...)
-					fmt.Printf("删除账户[%s]成功\n", account.Name)
-				}
+		commands.Data.Accounts = []*entity.Account{}
+		fmt.Println("remove all accounts success")
+		return nil
+	}
+	if ctx.Args().Len() == 0 {
+		return errors.MissingRequiredArgumentErr
+	}
+	for i := 0; i < ctx.Args().Len(); i++ {
+		for index, account := range commands.Data.Accounts {
+			if account.Name == ctx.Args().Get(i) {
+				commands.Data.Accounts = append(commands.Data.Accounts[:index], commands.Data.Accounts[index+1:]...)
+				fmt.Printf("remove account %s success\n", account.Name)
 			}
 		}
 	}

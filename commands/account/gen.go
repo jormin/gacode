@@ -16,16 +16,16 @@ func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
 			Name:      "gen",
-			Usage:     "生成账户信息",
+			Usage:     "Generate a new account",
 			Action:    Generate,
-			ArgsUsage: "[name: 账户名称]",
+			ArgsUsage: "[name: account name]",
 			Before:    commands.BeforeFunc,
 			After:     commands.AfterFunc,
 		},
 	)
 }
 
-// Generate 生成账户信息
+// Generate Generate a new account
 func Generate(ctx *cli.Context) error {
 	if ctx.Args().Len() == 0 {
 		return errors.MissingRequiredArgumentErr
@@ -46,7 +46,7 @@ func Generate(ctx *cli.Context) error {
 	qrCode := commands.GA.GetQRCode(name, secret)
 	curTime := time.Now().Unix()
 	commands.Data.Accounts = append(
-		commands.Data.Accounts, entity.Account{
+		commands.Data.Accounts, &entity.Account{
 			Name:       name,
 			Secret:     secret,
 			QRCode:     qrCode,
@@ -54,6 +54,6 @@ func Generate(ctx *cli.Context) error {
 			UpdateTime: curTime,
 		},
 	)
-	fmt.Println(fmt.Sprintf("生成账户成功，二维码: %s", qrCode))
+	fmt.Printf("generate account success.\nname: %s\nsecret: %s\nqrcode:%s\n", name, secret, qrCode)
 	return nil
 }

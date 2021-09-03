@@ -1,15 +1,15 @@
 package entity
 
-// Data
+// Data Save data
 type Data struct {
-	Accounts []Account `json:"accounts" desc:"账户信息"`
+	Accounts []*Account `json:"accounts" desc:"account list"`
 }
 
-// Account 账户
+// Account account of Google Authenticator
 type Account struct {
-	Name       string `json:"name" desc:"账户名称"`
-	Secret     string `json:"secret" desc:"秘钥"`
-	QRCode     string `json:"qrcode" desc:"二维码"`
-	CreateTime int64  `json:"create_time" desc:"创建时间"`
-	UpdateTime int64  `json:"update_time" desc:"更新时间"`
+	Name       string `json:"name" desc:"account name"`
+	Secret     string `json:"secret" desc:"account secret"`
+	QRCode     string `json:"qrcode" desc:"account QR code"`
+	CreateTime int64  `json:"create_time" desc:"create time"`
+	UpdateTime int64  `json:"update_time" desc:"update time"`
 }

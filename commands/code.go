@@ -16,13 +16,13 @@ func init() {
 	config.RegisterCommand(
 		"", &cli.Command{
 			Name:      "code",
-			Usage:     "获取账户验证码",
+			Usage:     "Show codes of specified or all accounts",
 			Action:    Code,
-			ArgsUsage: "[name-1: 第一个账户名称] [name-2] ... [name-n]",
+			ArgsUsage: "[name-1: first account name] [name-2] ... [name-n]",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{
 					Name:        "a",
-					Usage:       "获取所有账户的验证码",
+					Usage:       "Show codes of all accounts",
 					Required:    false,
 					DefaultText: "false",
 				},
@@ -33,7 +33,7 @@ func init() {
 	)
 }
 
-// Code 获取账户验证码
+// Code Show codes of Google Authenticator
 func Code(ctx *cli.Context) error {
 	getAll := false
 	flags := ctx.FlagNames()
@@ -43,7 +43,7 @@ func Code(ctx *cli.Context) error {
 			getAll = ctx.Bool("a")
 		}
 	}
-	var accounts []entity.Account
+	var accounts []*entity.Account
 	if getAll {
 		accounts = Data.Accounts
 	} else {

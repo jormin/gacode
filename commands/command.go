@@ -6,7 +6,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-// Data 存储数据
+// Data Save data
 var Data *entity.Data
 
 // GA Google Authenticator

@@ -12,8 +12,8 @@ import (
 
 func main() {
 	app := &cli.App{
-		Name:     "gcode",
-		Usage:    "Google Authenticator 动态口令",
+		Name:     "gacode",
+		Usage:    "The tool to manage accounts and codes of Google Authenticator.",
 		Version:  "v1.0.0",
 		Commands: config.GetRegisteredCommands(),
 	}
