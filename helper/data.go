@@ -21,10 +21,9 @@ func ReadData() (*entity.Data, error) {
 	path := GetDatafilePath()
 	_, err := os.Stat(path)
 	if err != nil {
-		if !os.IsNotExist(err) {
-			return nil, err
+		if os.IsNotExist(err) {
+			_, _ = os.Create(path)
 		}
-		_, _ = os.Create(path)
 		err = nil
 	}
 	b, _ := ioutil.ReadFile(path)
