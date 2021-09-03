@@ -20,8 +20,12 @@ func GetDatafilePath() string {
 func ReadData() (*entity.Data, error) {
 	path := GetDatafilePath()
 	_, err := os.Stat(path)
-	if os.IsNotExist(err) {
+	if err != nil {
+		if !os.IsNotExist(err) {
+			return nil, err
+		}
 		_, _ = os.Create(path)
+		err = nil
 	}
 	b, _ := ioutil.ReadFile(path)
 	var data *entity.Data
