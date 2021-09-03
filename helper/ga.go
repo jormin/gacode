@@ -26,10 +26,7 @@ func (ga *GoogleAuthenticator) hmacSha1(key, data []byte) []byte {
 // GenerateSecret generate new secret
 func (ga *GoogleAuthenticator) GenerateSecret() (string, error) {
 	var buf bytes.Buffer
-	err := binary.Write(&buf, binary.BigEndian, time.Now().UnixNano()/1000/30)
-	if err != nil {
-		return "", err
-	}
+	_ = binary.Write(&buf, binary.BigEndian, time.Now().UnixNano()/1000/30)
 	secret := strings.ToUpper(base32.StdEncoding.EncodeToString(ga.hmacSha1(buf.Bytes(), nil)))
 	return secret, nil
 }

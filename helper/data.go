@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/user"
 
 	"github.com/jormin/gacode/entity"
-	"github.com/mitchellh/go-homedir"
 )
 
 // GetDatafilePath Get path of data file
 func GetDatafilePath() string {
-	home, _ := homedir.Dir()
-	return fmt.Sprintf("%s/gacode", home)
+	u, _ := user.Current()
+	return fmt.Sprintf("%s/gacode", u.HomeDir)
 }
 
 // ReadData read data from file
@@ -21,15 +21,9 @@ func ReadData() (*entity.Data, error) {
 	path := GetDatafilePath()
 	_, err := os.Stat(path)
 	if os.IsNotExist(err) {
-		_, err = os.Create(path)
-		if err != nil {
-			return nil, err
-		}
+		_, _ = os.Create(path)
 	}
-	b, err := ioutil.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
+	b, _ := ioutil.ReadFile(path)
 	var data *entity.Data
 	if string(b) == "" {
 		data = NewData()
@@ -39,20 +33,14 @@ func ReadData() (*entity.Data, error) {
 			return nil, err
 		}
 	}
-	if data.Accounts == nil {
-		data.Accounts = []*entity.Account{}
-	}
 	return data, err
 }
 
 // WriteData write data to file
 func WriteData(data *entity.Data) error {
 	path := GetDatafilePath()
-	b, err := json.Marshal(data)
-	if err != nil {
-		return err
-	}
-	err = ioutil.WriteFile(path, b, 0777)
+	b, _ := json.Marshal(data)
+	err := ioutil.WriteFile(path, b, 0777)
 	return err
 }
 
