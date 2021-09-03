@@ -18,7 +18,7 @@ func TestGetDatafilePath(t *testing.T) {
 	}{
 		{
 			name: "01",
-			want: fmt.Sprintf("%s/gacode", u.HomeDir),
+			want: fmt.Sprintf("%s/gacode.json", u.HomeDir),
 		},
 	}
 	for _, tt := range tests {

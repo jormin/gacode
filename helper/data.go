@@ -13,7 +13,7 @@ import (
 // GetDatafilePath Get path of data file
 func GetDatafilePath() string {
 	u, _ := user.Current()
-	return fmt.Sprintf("%s/gacode", u.HomeDir)
+	return fmt.Sprintf("%s/gacode.json", u.HomeDir)
 }
 
 // ReadData read data from file

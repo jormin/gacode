@@ -2,6 +2,7 @@ package account
 
 import (
 	"fmt"
+	"os"
 	"os/user"
 
 	"github.com/jormin/gacode/commands"
@@ -73,7 +74,7 @@ func QRCode(ctx *cli.Context) error {
 		path = exportPath
 	}
 	file := fmt.Sprintf("%s/%s.png", path, xid.New().String())
-	err := qrcode.WriteFile(account.QRCode, qrcode.Medium, width, file)
+	err := qrcode.WriteFile(account.QRCode, qrcode.Highest, width, file)
 	if err != nil {
 		return err
 	}
@@ -81,5 +82,6 @@ func QRCode(ctx *cli.Context) error {
 		fmt.Printf("export the QR code success: %s\n", file)
 		return nil
 	}
+	defer os.Remove(file)
 	return helper.PrintQRCode(file)
 }

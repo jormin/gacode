@@ -7,8 +7,11 @@ import (
 	"os"
 )
 
-// PrintQRCodeSize the size of QR code to print
-const PrintQRCodeSize = 50
+// PrintQRCodeAllSize the size of QR code to print
+const PrintQRCodeAllSize = 45
+
+// PrintQRCodeAllSize the size of QR code to print
+const PrintQRCodeSize = 35
 
 // ExportQRCodeSize the size of QR code to export
 const ExportQRCodeSize = 256
@@ -24,10 +27,10 @@ func PrintQRCode(file string) error {
 	if err != nil {
 		return err
 	}
-	var points [PrintQRCodeSize][PrintQRCodeSize]int
-	gray := image.NewGray(image.Rect(0, 0, PrintQRCodeSize, PrintQRCodeSize))
-	for x := 0; x < PrintQRCodeSize; x++ {
-		for y := 0; y < PrintQRCodeSize; y++ {
+	var points [PrintQRCodeAllSize][PrintQRCodeAllSize]int
+	gray := image.NewGray(image.Rect(0, 0, PrintQRCodeAllSize, PrintQRCodeAllSize))
+	for x := 0; x < PrintQRCodeAllSize; x++ {
+		for y := 0; y < PrintQRCodeAllSize; y++ {
 			r32, g32, b32, _ := img.At(x, y).RGBA()
 			r, g, b := int(r32>>8), int(g32>>8), int(b32>>8)
 			if (r+g+b)/3 > 180 {
@@ -39,8 +42,8 @@ func PrintQRCode(file string) error {
 			}
 		}
 	}
-	for x := 0; x < PrintQRCodeSize; x++ {
-		for y := 0; y < PrintQRCodeSize; y++ {
+	for x := 0; x < PrintQRCodeAllSize; x++ {
+		for y := 0; y < PrintQRCodeAllSize; y++ {
 			if points[x][y] == 1 {
 				fmt.Print("\033[40;40m  \033[0m")
 			} else {
