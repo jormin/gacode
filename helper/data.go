@@ -31,10 +31,7 @@ func ReadData() (*entity.Data, error) {
 	if string(b) == "" {
 		data = NewData()
 	} else {
-		err = json.Unmarshal(b, &data)
-		if err != nil {
-			return nil, err
-		}
+		_ = json.Unmarshal(b, &data)
 	}
 	return data, err
 }

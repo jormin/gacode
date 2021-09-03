@@ -62,27 +62,15 @@ func TestReadData(t *testing.T) {
 	tests := []struct {
 		name    string
 		wantErr bool
-		deal    func()
 	}{
 		{
 			name:    "01",
 			wantErr: false,
-			deal:    nil,
-		},
-		{
-			name:    "02",
-			wantErr: true,
-			deal: func() {
-				_ = os.WriteFile(file, []byte("test"), 0777)
-			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(
 			tt.name, func(t *testing.T) {
-				if tt.deal != nil {
-					tt.deal()
-				}
 				_, err := ReadData()
 				if (err != nil) != tt.wantErr {
 					t.Errorf("ReadData() error = %v, wantErr %v", err, tt.wantErr)
