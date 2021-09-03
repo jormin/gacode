@@ -2,7 +2,7 @@ Google Authenticator Code
 ============
 
 [![Build Status](https://github.com/jormin/gacode/workflows/test/badge.svg?branch=master)](https://github.com/jormin/gacode/actions?query=workflow%3Atest)
-[![Codecov](https://codecov.io/gh/jormin/gacode/branch/master/graph/badge.svg)](https://codecov.io/gh/jormin/gacode)
+[![Codecov](https://codecov.io/gh/jormin/gacode/branch/master/graph/badge.svg?)](https://codecov.io/gh/jormin/gacode)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jormin/gacode)](https://goreportcard.com/report/github.com/jormin/gacode)
 [![](https://img.shields.io/badge/version-v1.0.0-success.svg)](https://github.com/jormin/gacode)
 

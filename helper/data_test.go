@@ -57,7 +57,7 @@ func TestNewData(t *testing.T) {
 
 func TestReadData(t *testing.T) {
 	u, _ := user.Current()
-	file := fmt.Sprintf("%s/gacode", u.HomeDir)
+	file := fmt.Sprintf("%s/gacode.json", u.HomeDir)
 	_ = os.Remove(file)
 	tests := []struct {
 		name    string
