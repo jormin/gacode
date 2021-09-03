@@ -150,7 +150,7 @@ func TestNewGoogleAuthenticator(t *testing.T) {
 	}
 }
 
-func BenchmarkGoogleAuthenticator_GenerateSecret(t *testing.B) {
+func BenchmarkGoogleAuthenticator_GenerateSecret(b *testing.B) {
 	tt := struct {
 		name    string
 		wantErr bool
@@ -158,17 +158,17 @@ func BenchmarkGoogleAuthenticator_GenerateSecret(t *testing.B) {
 		name:    "01",
 		wantErr: false,
 	}
-	for i := 0; i < t.N; i++ {
+	for i := 0; i < b.N; i++ {
 		ga := &GoogleAuthenticator{}
 		_, err := ga.GenerateSecret()
 		if (err != nil) != tt.wantErr {
-			t.Errorf("GenerateSecret() error = %v, wantErr %v", err, tt.wantErr)
+			b.Errorf("GenerateSecret() error = %v, wantErr %v", err, tt.wantErr)
 			return
 		}
 	}
 }
 
-func BenchmarkGoogleAuthenticator_GetCode(t *testing.B) {
+func BenchmarkGoogleAuthenticator_GetCode(b *testing.B) {
 	type args struct {
 		secret string
 	}
@@ -185,17 +185,17 @@ func BenchmarkGoogleAuthenticator_GetCode(t *testing.B) {
 		},
 		wantErr: false,
 	}
-	for i := 0; i < t.N; i++ {
+	for i := 0; i < b.N; i++ {
 		ga := &GoogleAuthenticator{}
 		_, err := ga.GetCode(tt.args.secret)
 		if (err != nil) != tt.wantErr {
-			t.Errorf("GetCode() error = %v, wantErr %v", err, tt.wantErr)
+			b.Errorf("GetCode() error = %v, wantErr %v", err, tt.wantErr)
 			return
 		}
 	}
 }
 
-func BenchmarkGoogleAuthenticator_hmacSha1(t *testing.B) {
+func BenchmarkGoogleAuthenticator_hmacSha1(b *testing.B) {
 	type args struct {
 		key  []byte
 		data []byte
@@ -212,10 +212,10 @@ func BenchmarkGoogleAuthenticator_hmacSha1(t *testing.B) {
 		},
 		want: []byte{84, 11, 12, 83, 212, 146, 88, 55, 189, 146, 179, 247, 26, 190, 122, 157, 112, 182, 118, 196},
 	}
-	for i := 0; i < t.N; i++ {
+	for i := 0; i < b.N; i++ {
 		ga := &GoogleAuthenticator{}
 		if got := ga.hmacSha1(tt.args.key, tt.args.data); !reflect.DeepEqual(got, tt.want) {
-			t.Errorf("hmacSha1() = %v, want %v", got, tt.want)
+			b.Errorf("hmacSha1() = %v, want %v", got, tt.want)
 		}
 	}
 }

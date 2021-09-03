@@ -20,6 +20,6 @@ jobs:
           go-version: ${{ matrix.go }}
 
       - run: go test ./... -v -cover -coverprofile coverage.out
-      - run: go test -bench . -benchmem
+      - run: go test ./... -v -bench -benchmem
 
       - uses: codecov/codecov-action@v1
