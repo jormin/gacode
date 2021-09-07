@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"text/tabwriter"
+	"time"
 
 	"github.com/jormin/gacode/config"
 	"github.com/jormin/gacode/entity"
@@ -58,8 +59,8 @@ func Code(ctx *cli.Context) error {
 			}
 		}
 	}
-	contentFormat := "%s\t%s"
-	headers := []interface{}{"Account", "Code"}
+	contentFormat := "%s\t%s\t%s"
+	headers := []interface{}{"Account", "Code", "Remain Time"}
 	w := tabwriter.NewWriter(os.Stdout, 10, 0, 5, ' ', tabwriter.TabIndent)
 	_, _ = fmt.Fprintf(w, "%s\n", fmt.Sprintf(contentFormat, headers...))
 	for _, item := range accounts {
@@ -67,7 +68,7 @@ func Code(ctx *cli.Context) error {
 		if err != nil {
 			code = "get code error"
 		}
-		str := fmt.Sprintf(contentFormat, item.Name, code)
+		str := fmt.Sprintf(contentFormat, item.Name, code, fmt.Sprintf("%02d Seconds", 30-time.Now().Unix()%30))
 		_, _ = fmt.Fprintf(w, "%s\n", str)
 	}
 	_ = w.Flush()

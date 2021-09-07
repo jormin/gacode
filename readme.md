@@ -126,19 +126,19 @@ remove all accounts success
 
 ```shell
 ➜  ~ gacode code test1 test2
-Account     Code
-test1       649669
-test2       660560
+Account     Code       Remain Time
+test1       649669     05 Seconds
+test2       660560     05 Seconds
 ```
 
 - Show codes of all accounts
 
 ```shell
 ➜  ~ gacode code -a
-Account     Code
-test1       649669
-test2       660560
-test3       387946
+Account     Code       Remain Time
+test1       649669     05 Seconds
+test2       660560     05 Seconds
+test3       387946     05 Seconds
 ```
 
 License
