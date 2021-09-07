@@ -49,7 +49,7 @@ func (ga *GoogleAuthenticator) GetCode(secret string) (code string, err error) {
 	bts[0] = bts[0] & 0x7F
 	number := ((uint32(bts[0]) << 24) + (uint32(bts[1]) << 16) +
 		(uint32(bts[2]) << 8) + uint32(bts[3])) % 1000000
-	return fmt.Sprintf("%d", number), nil
+	return fmt.Sprintf("%06d", number), nil
 }
 
 // GetQRCode get QR code content
