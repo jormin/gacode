@@ -3,6 +3,8 @@ package commands
 import (
 	"fmt"
 	"os"
+	"os/exec"
+	"runtime"
 	"text/tabwriter"
 	"time"
 
@@ -27,6 +29,12 @@ func init() {
 					Required:    false,
 					DefaultText: "false",
 				},
+				&cli.BoolFlag{
+					Name:        "t",
+					Usage:       "Cycle show codes every second",
+					Required:    false,
+					DefaultText: "false",
+				},
 			},
 			Before: BeforeFunc,
 			After:  AfterFunc,
@@ -37,11 +45,14 @@ func init() {
 // Code Show codes of Google Authenticator
 func Code(ctx *cli.Context) error {
 	getAll := false
+	cycle := false
 	flags := ctx.FlagNames()
 	for _, v := range flags {
 		switch v {
 		case "a":
 			getAll = ctx.Bool("a")
+		case "t":
+			cycle = ctx.Bool("t")
 		}
 	}
 	var accounts []*entity.Account
@@ -59,6 +70,20 @@ func Code(ctx *cli.Context) error {
 			}
 		}
 	}
+	if !cycle {
+		printCode(accounts)
+		return nil
+	}
+	ticker := time.NewTicker(time.Second)
+	for {
+		clear()
+		printCode(accounts)
+		<-ticker.C
+	}
+}
+
+// printCode print codes of accounts
+func printCode(accounts []*entity.Account) {
 	contentFormat := "%s\t%s\t%s"
 	headers := []interface{}{"Account", "Code", "Remain Time"}
 	w := tabwriter.NewWriter(os.Stdout, 10, 0, 5, ' ', tabwriter.TabIndent)
@@ -72,5 +97,16 @@ func Code(ctx *cli.Context) error {
 		_, _ = fmt.Fprintf(w, "%s\n", str)
 	}
 	_ = w.Flush()
-	return nil
+}
+
+// clear clear screen
+func clear() {
+	var cmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("cmd", "/c", "cls")
+	} else {
+		cmd = exec.Command("clear")
+	}
+	cmd.Stdout = os.Stdout
+	cmd.Run()
 }

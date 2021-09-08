@@ -137,10 +137,20 @@ test1       649669     05 Seconds
 test2       660560     05 Seconds
 ```
 
-- Show codes of all accounts
+- Show codes of all accounts with tag `-a`
 
 ```shell
 ➜  ~ gacode code -a
+Account     Code       Remain Time
+test1       649669     05 Seconds
+test2       660560     05 Seconds
+test3       387946     05 Seconds
+```
+
+- Cycle show codes every second with tag `-t`
+
+```shell
+➜  ~ gacode code -a -t
 Account     Code       Remain Time
 test1       649669     05 Seconds
 test2       660560     05 Seconds
