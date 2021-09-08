@@ -23,19 +23,25 @@ Support
 
 - [x] Show codes of specified or all accounts
 
-Build
+Install
 -----
 
-```
-# clone source code
-git clone https://github.com/jormin/gacode.git
+There are two ways to install `gacode`:
 
-# download module
-go mod download
+1. Download the binary file of the corresponding system and corresponding architecture from [the release page](https://github.com/jormin/gacode/releases)，then rename and move it to your bin path such as `/usr/local/bin`.
 
-# install
-go install
-```
+2. Clone source code then install it by yourself
+
+    ```
+    # clone source code
+    git clone https://github.com/jormin/gacode.git
+    
+    # download module
+    go mod download
+    
+    # install
+    go install
+    ```
 
 Command
 -----
