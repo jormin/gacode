@@ -5,20 +5,22 @@ import (
 	"os"
 	"text/tabwriter"
 
+	"github.com/urfave/cli/v2"
+
 	"github.com/jormin/gacode/commands"
 	"github.com/jormin/gacode/config"
-	"github.com/urfave/cli/v2"
 )
 
 // init
 func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
-			Name:   "ls",
-			Usage:  "List all accounts configured",
-			Action: List,
-			Before: commands.BeforeFunc,
-			After:  commands.AfterFunc,
+			Name:    "list",
+			Aliases: []string{"ls"},
+			Usage:   "List all accounts configured",
+			Action:  List,
+			Before:  commands.BeforeFunc,
+			After:   commands.AfterFunc,
 		},
 	)
 }

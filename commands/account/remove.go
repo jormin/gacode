@@ -3,18 +3,20 @@ package account
 import (
 	"fmt"
 
+	"github.com/urfave/cli/v2"
+
 	"github.com/jormin/gacode/commands"
 	"github.com/jormin/gacode/config"
 	"github.com/jormin/gacode/entity"
 	"github.com/jormin/gacode/errors"
-	"github.com/urfave/cli/v2"
 )
 
 // init
 func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
-			Name:      "rm",
+			Name:      "remove",
+			Aliases:   []string{"rm"},
 			Usage:     "Remove specified or all accounts",
 			Action:    Remove,
 			ArgsUsage: "[name-1: first account name] [name-2] ... [name-n]",

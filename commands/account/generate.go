@@ -4,18 +4,20 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/urfave/cli/v2"
+
 	"github.com/jormin/gacode/commands"
 	"github.com/jormin/gacode/config"
 	"github.com/jormin/gacode/entity"
 	"github.com/jormin/gacode/errors"
-	"github.com/urfave/cli/v2"
 )
 
 // init
 func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
-			Name:      "gen",
+			Name:      "generate",
+			Aliases:   []string{"gen"},
 			Usage:     "Generate a new account",
 			Action:    Generate,
 			ArgsUsage: "[name: account name]",

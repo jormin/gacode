@@ -5,21 +5,23 @@ import (
 	"os"
 	"os/user"
 
+	"github.com/rs/xid"
+	"github.com/skip2/go-qrcode"
+	"github.com/urfave/cli/v2"
+
 	"github.com/jormin/gacode/commands"
 	"github.com/jormin/gacode/config"
 	"github.com/jormin/gacode/entity"
 	"github.com/jormin/gacode/errors"
 	"github.com/jormin/gacode/helper"
-	"github.com/rs/xid"
-	"github.com/skip2/go-qrcode"
-	"github.com/urfave/cli/v2"
 )
 
 // init
 func init() {
 	config.RegisterCommand(
 		"account", &cli.Command{
-			Name:      "qr",
+			Name:      "qrcode",
+			Aliases:   []string{"qr"},
 			Usage:     "Print or Export the QR code image",
 			Action:    QRCode,
 			ArgsUsage: "[name: account name]",
