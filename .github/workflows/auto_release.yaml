@@ -86,7 +86,6 @@ jobs:
 
       - name: Compile Source Code
         id: compile-source-code
-        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
         run: |
