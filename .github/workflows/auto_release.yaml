@@ -105,6 +105,6 @@ jobs:
         with:
           tag_name: ${{ env.tag }}
           name: ${{ env.tag }}
-          body: commit_message.txt
+          body_path: commit_message.txt
           token: ${{ secrets.GITHUB_TOKEN }}
           files: target/*
