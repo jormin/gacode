@@ -18,7 +18,7 @@ func TestGetDatafilePath(t *testing.T) {
 	}{
 		{
 			name: "01",
-			want: fmt.Sprintf("%s/gacode.json", u.HomeDir),
+			want: fmt.Sprintf("%s/.gacode", u.HomeDir),
 		},
 	}
 	for _, tt := range tests {
@@ -57,7 +57,7 @@ func TestNewData(t *testing.T) {
 
 func TestReadData(t *testing.T) {
 	u, _ := user.Current()
-	file := fmt.Sprintf("%s/gacode.json", u.HomeDir)
+	file := fmt.Sprintf("%s/.gacode", u.HomeDir)
 	_ = os.Remove(file)
 	tests := []struct {
 		name    string

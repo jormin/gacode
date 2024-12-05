@@ -91,10 +91,6 @@ secret: KR2OSN2GXPQL2FARNUHTFHZWLUSSGEZ4
 qrcode:otpauth://totp/test2?secret=KR2OSN2GXPQL2FARNUHTFHZWLUSSGEZ4
 ```
 
-- Print the QR code image
-
-<div align="left"><img src="https://blog.cdn.lerzen.com/img/20210904005428.png" alt="image-20210904005423753" style="zoom:30%;" /></div>
-
 - Export the QR code image with flag `-o`
 
 ```shell
