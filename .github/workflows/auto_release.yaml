@@ -86,8 +86,6 @@ jobs:
 
       - name: Compile Source Code
         id: compile-source-code
-        with:
-          go-version: ${{ matrix.go }}
         run: |
           bash build.sh $tag
           archives=""
