@@ -85,6 +85,8 @@ jobs:
         id: compile-source-code
         run: |
           bash build.sh $tag
+          ls -lhrt
+          ls -lhrt target
           archives=""
           for file in target/*; do
             if [ -f "$file" ]; then
@@ -112,8 +114,8 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: $tag
-          name: $tag
+          tag_name: ${{ env.tag }}
+          name: ${{ env.tag }}
           body: commit_message.txt
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ env.archives }}
