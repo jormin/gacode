@@ -85,17 +85,6 @@ jobs:
         id: compile-source-code
         run: |
           bash build.sh $tag
-          ls -lhrt
-          ls -lhrt target
-          archives=""
-          for file in target/*; do
-            if [ -f "$file" ]; then
-              archives+="$file "
-            fi
-          done
-          archives=${archives% }
-          echo "archives=$archives" >> $GITHUB_ENV
-          echo "archives=$archives"
 
       - name: Get latest commit message
         id: get_commit_message
